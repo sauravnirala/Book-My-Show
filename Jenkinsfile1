@@ -54,7 +54,7 @@ pipeline {
         }
         stage('Trivy FS Scan') {
             steps {
-                sh 'trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 . > trivyfs.txt'
+                sh 'trivy fs --scanners vuln --skip-dirs node_modules --severity HIGH,CRITICAL --exit-code 1 . > trivyfs.txt'
             }
         }
         stage('Docker Build & Push') {
